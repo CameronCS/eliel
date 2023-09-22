@@ -1,0 +1,67 @@
+﻿<Window x:Class="WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="10">
+            <!-- UI Elements for adding modules -->
+            <GroupBox Header="Add Module">
+                <!-- Textboxes for module code, name, credits, and class hours -->
+                <StackPanel>
+                    <TextBox Margin="5" Text="Module Code" Name="moduleCodeTextBox"/>
+                    <TextBox Margin="5" Text="Module Name" Name="moduleNameTextBox"/>
+                    <TextBox Margin="5" Text="Credits" Name="moduleCreditsTextBox"/>
+                    <TextBox Margin="5" Text="Class Hours/Week" Name="moduleClassHoursTextBox"/>
+                    <Button Content="Add Module" Margin="5" Click="AddModule_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- UI Elements for semester details -->
+            <GroupBox Header="Semester Details">
+                <!-- TextBox for number of weeks -->
+                <StackPanel>
+                    <TextBox Margin="5" Text="Number of Weeks" Name="numberOfWeeksTextBox"/>
+                    <DatePicker Margin="5" Text="Start Date" Name="startDateDatePicker"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- List of modules -->
+            <ListView Name="moduleListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Code" Width="100" DisplayMemberBinding="{Binding Code}" />
+                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Credits" Width="80" DisplayMemberBinding="{Binding Credits}" />
+                        <GridViewColumn Header="Class Hours/Week" Width="120" DisplayMemberBinding="{Binding ClassHoursPerWeek}" />
+                        <GridViewColumn Header="Self-Study Hours/Week" Width="140" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- UI Elements for recording hours -->
+            <GroupBox Header="Record Hours">
+                <StackPanel>
+                    <!-- ComboBox to select module -->
+                    <ComboBox Name="moduleComboBox" Margin="5" Text="Select Module"></ComboBox>
+
+                    <DatePicker Name="datePicker" Margin="5" Text="Date" />
+
+                    <TextBox Name="hoursTextBox" Margin="5" Text="Hours" />
+
+                    <Button Content="Record Hours" Margin="5" Click="RecordHours_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Display remaining hours for the current week -->
+            <GroupBox Header="Remaining Hours (Current Week)">
+                <ListView Name="remainingHoursListView">
+                    <!-- Display remaining hours for each module -->
+                </ListView>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>
